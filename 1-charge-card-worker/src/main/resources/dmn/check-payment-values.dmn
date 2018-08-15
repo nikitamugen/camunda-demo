@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_17wozlc" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="check-payment-values" name="Check payment values">
+    <decisionTable id="decisionTable_1">
+      <input id="input_1">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>item</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1rrx1wj">
+        <inputExpression id="LiteralExpression_1k0xfu8" typeRef="long">
+          <text>amount</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" name="valid" typeRef="boolean" />
+      <rule id="DecisionRule_0gi696z">
+        <inputEntry id="UnaryTests_13qboa2">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0x2qose">
+          <text>&gt; 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vsfprk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0pnq1dr">
+        <inputEntry id="UnaryTests_1k6fnn6">
+          <text>""</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k1rrk8">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sfufvf">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1irrrq0">
+        <inputEntry id="UnaryTests_1f69dre">
+          <text>""</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0idkoxo">
+          <text>&gt; 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oiiejg">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1x4rfuv">
+        <inputEntry id="UnaryTests_11g3gqn">
+          <text>not("")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rxekc0">
+          <text>0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ou18sg">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
