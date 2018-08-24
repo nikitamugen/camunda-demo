@@ -13,18 +13,6 @@
 		<version.camunda>7.9.0</version.camunda>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.camunda.bpm</groupId>
-				<artifactId>camunda-bom</artifactId>
-				<scope>import</scope>
-				<type>pom</type>
-				<version>${version.camunda}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.camunda.bpm</groupId>

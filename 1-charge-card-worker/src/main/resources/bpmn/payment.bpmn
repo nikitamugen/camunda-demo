@@ -2,6 +2,13 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0aui0ws" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.16.2">
   <bpmn:process id="payment-retrieval" name="Payment Retrieval" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="Payment Retrieval Requested">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="amount" label="Amount" type="long" defaultValue="0" />
+          <camunda:formField id="item" label="Item" type="string" defaultValue="&#34;&#34;" />
+          <camunda:formField id="test" label="Test ?" type="date" />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_14672cs</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:serviceTask id="Task_19pt1nu" name="Charge Credit Card" camunda:type="external" camunda:topic="charge-card">
@@ -88,6 +95,7 @@
     <bpmn:exclusiveGateway id="ExclusiveGateway_1s3lj9t">
       <bpmn:incoming>SequenceFlow_14672cs</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_0cl9b65</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1gua26m</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0gzlpg9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_0gzlpg9" sourceRef="ExclusiveGateway_1s3lj9t" targetRef="SubProcess_12iukxz" />
@@ -97,17 +105,24 @@
         <camunda:formData>
           <camunda:formField id="item" label="item" type="string" />
           <camunda:formField id="amount" label="amount" type="long" />
+          <camunda:formField id="test" label="Test ?" type="boolean" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0dbslqh</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cl9b65</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0cl9b65" sourceRef="Task_1eiiv4r" targetRef="ExclusiveGateway_1s3lj9t" />
+    <bpmn:sequenceFlow id="SequenceFlow_1gua26m" sourceRef="StartEvent_0xkf737" targetRef="ExclusiveGateway_1s3lj9t" />
+    <bpmn:startEvent id="StartEvent_0xkf737">
+      <bpmn:outgoing>SequenceFlow_1gua26m</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_16npime" />
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:escalation id="Escalation_0r8oend" name="Escalation_28hd5bp" />
   <bpmn:signal id="Signal_1ovsan4" name="Signal_2q0jjm7" />
   <bpmn:signal id="Signal_0xwn065" name="values-changed" />
   <bpmn:signal id="Signal_0utfrd0" name="change-values" />
+  <bpmn:message id="Message_16npime" name="start-fda-ods-process" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="payment-retrieval">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -276,6 +291,15 @@
         <di:waypoint x="186" y="442" />
         <di:waypoint x="186" y="259" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1gua26m_di" bpmnElement="SequenceFlow_1gua26m">
+        <di:waypoint x="109" y="381" />
+        <di:waypoint x="130" y="381" />
+        <di:waypoint x="130" y="234" />
+        <di:waypoint x="161" y="234" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1kkkhdm_di" bpmnElement="StartEvent_0xkf737">
+        <dc:Bounds x="73" y="363" width="36" height="36" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
